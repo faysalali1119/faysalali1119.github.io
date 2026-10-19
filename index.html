@@ -7,221 +7,268 @@
 <title>Faysal Ali Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Martian+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: full-bleed deep-green hero band with amber highlights, then a quiet single column of spec-sheet sections */
+/* Layout: oversized condensed name across the top, then an asymmetric two-column page:
+   a sticky "spec sheet" rail on the left, and work logged as help-desk tickets on the right.
+   Skills are printed as label-maker tape, the way techs tag cables. */
 :root{
-  --bg:#eef1ed; --surface:#ffffff; --fg:#18221d; --muted:#56635b; --line:#d3dbd4;
-  --band:#123d2e; --band-fg:#eaf3ec; --band-muted:#a9c4b4;
-  --accent:#1d7553; --amber:#c88514; --amber-soft:#f6e9cf; --chip:#e1ebe3;
-  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --body:"Figtree",ui-sans-serif,system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --bg:#ebeaf0; --paper:#f8f8fb; --fg:#1a1830; --muted:#5d5a75; --line:#cbc8d8;
+  --green:#2a2178; --green-2:#5544d0; --amber:#f26322; --tape:#1f1b3a; --tape-fg:#ffd8c4;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
+  --mono:"Martian Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#111814; --surface:#18221c; --fg:#e5ede7; --muted:#9db0a4; --line:#28362e;
-  --band:#0c2a20; --band-fg:#eaf3ec; --band-muted:#94b5a2;
-  --accent:#6bcf9e; --amber:#e8aa45; --amber-soft:#3a2e17; --chip:#203029; color-scheme:dark}}
+  --bg:#13121c; --paper:#1b1a28; --fg:#ecebf5; --muted:#a6a3bf; --line:#2f2d45;
+  --green:#b7acff; --green-2:#9a8cff; --amber:#ff8550; --tape:#ffd2bd; --tape-fg:#15131f; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#111814; --surface:#18221c; --fg:#e5ede7; --muted:#9db0a4; --line:#28362e;
-  --band:#0c2a20; --band-fg:#eaf3ec; --band-muted:#94b5a2;
-  --accent:#6bcf9e; --amber:#e8aa45; --amber-soft:#3a2e17; --chip:#203029; color-scheme:dark}
+  --bg:#13121c; --paper:#1b1a28; --fg:#ecebf5; --muted:#a6a3bf; --line:#2f2d45;
+  --green:#b7acff; --green-2:#9a8cff; --amber:#ff8550; --tape:#ffd2bd; --tape-fg:#15131f; color-scheme:dark}
 
-body{background:var(--bg);color:var(--fg);font:400 1.05rem/1.6 var(--body)}
-.wrap{max-width:860px;margin:0 auto;
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 1.04rem/1.6 var(--body);
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.12}
+.page{max-width:1120px;margin:0 auto;padding-block:28px 64px}
 p{margin:0}
-a{color:var(--accent)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:3px}
-.label{font:500 .74rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-code{font-family:var(--mono);font-size:.88em;background:var(--chip);padding:1px 5px;border-radius:3px}
+a{color:var(--green-2);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.02em}
 
-/* Hero band */
-.hero{background:var(--band);color:var(--band-fg)}
-.hero .wrap{padding-block:60px 52px;display:flex;flex-direction:column;gap:18px}
-.hero .label{color:var(--band-muted)}
-.hero h1{font-size:clamp(2.8rem,9vw,4.6rem);font-weight:800;letter-spacing:-.03em}
-.hero h1 span{color:var(--amber)}
-.role{font:600 1.2rem/1.4 var(--body)}
-.lede{max-width:60ch;color:var(--band-muted);font-size:1.1rem}
-.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font:400 .84rem/1.5 var(--mono);color:var(--band-muted)}
-.links{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.btn{font:600 .9rem/1 var(--body);text-decoration:none;padding:11px 16px;border-radius:6px;border:1px solid var(--band-muted);color:var(--band-fg);background:transparent;cursor:pointer}
-.btn.primary{background:var(--amber);border-color:var(--amber);color:#1a1205}
-.btn:hover{border-color:var(--amber)}
-.email{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font:400 .9rem var(--mono);color:var(--band-fg)}
-.email span{user-select:all}
-.copy{font:500 .76rem/1 var(--mono);padding:7px 10px;border-radius:5px;border:1px solid var(--band-muted);background:transparent;color:var(--band-fg);cursor:pointer}
-.copy:hover{border-color:var(--amber);color:var(--amber)}
+/* Masthead */
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;border-bottom:3px solid var(--fg);padding-bottom:10px}
+.status{display:inline-flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green-2);box-shadow:0 0 0 4px color-mix(in srgb,var(--green-2) 22%,transparent)}
+@media (prefers-reduced-motion:no-preference){.dot{animation:blink 2.4s ease-in-out infinite}}
+@keyframes blink{50%{opacity:.35}}
+.name{font:900 clamp(4.2rem,17vw,12.5rem)/.82 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:18px 0 0;color:var(--green)}
+.name em{font-style:normal;color:var(--amber)}
+.strap{display:grid;grid-template-columns:1.3fr 1fr;gap:20px 40px;margin-top:22px;align-items:end}
+.strap p.lead{font-size:clamp(1.15rem,2.4vw,1.45rem);line-height:1.4;max-width:34ch}
+.strap p.lead b{background:linear-gradient(transparent 62%,color-mix(in srgb,var(--amber) 45%,transparent) 62%)}
+.strap .aside{color:var(--muted);max-width:44ch}
+@media (max-width:760px){.strap{grid-template-columns:1fr}}
 
-main .wrap{padding-block:52px 72px;display:flex;flex-direction:column;gap:52px}
+/* Two-column body */
+.grid{display:grid;grid-template-columns:290px 1fr;gap:40px 56px;margin-top:48px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
 
-/* Sections */
-section{display:grid;grid-template-columns:150px 1fr;gap:12px 32px;border-top:2px solid var(--fg);padding-top:24px}
-section > .label{padding-top:4px;color:var(--fg)}
-.body{min-width:0;display:flex;flex-direction:column;gap:22px}
-@media (max-width:640px){section{grid-template-columns:1fr}}
+/* Spec rail */
+.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);display:flex;flex-direction:column;gap:26px;min-width:0}
+@media (max-width:860px){.rail{position:static}}
+.rail h2{font:800 1.05rem/1 var(--display);text-transform:uppercase;letter-spacing:.12em;margin:0 0 10px;color:var(--muted)}
+.spec{border-top:1px solid var(--fg)}
+.spec div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dotted var(--line)}
+.spec dt{font-family:var(--mono);font-size:.7rem;color:var(--muted);text-transform:uppercase;padding-top:3px}
+.spec dd{margin:0;text-align:right;min-width:0;overflow-wrap:anywhere}
+.contact{display:flex;flex-direction:column;gap:8px}
+.contact a.big{display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:var(--fg);font:800 1.5rem/1 var(--display);text-transform:uppercase;padding:12px 14px;border:2px solid var(--fg);background:var(--paper)}
+.contact a.big:hover{background:var(--amber);border-color:var(--amber);color:#1a1205}
+.contact a.big span{font:400 .9rem var(--mono)}
+.mail{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:.74rem}
+.mail span{user-select:all;overflow-wrap:anywhere}
+.copy{font:600 .66rem var(--mono);text-transform:uppercase;padding:6px 8px;background:transparent;color:var(--fg);border:1px solid var(--fg);cursor:pointer}
+.copy:hover{background:var(--fg);color:var(--bg)}
 
-/* Certs */
-.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.cert{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
-.cert h3{font-size:1.2rem;font-weight:700}
-.cert .code{font:500 .8rem var(--mono);color:var(--amber)}
-.cert .date{font:400 .8rem var(--mono);color:var(--muted)}
+/* Certs as cable tags */
+.certs{display:flex;flex-direction:column;gap:10px}
+.cert{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:center;padding:10px 12px 10px 0;background:var(--paper);border:1px solid var(--line)}
+.cert .hole{grid-row:span 2;width:30px;height:100%;border-right:1px dashed var(--line);display:grid;place-items:center}
+.cert .hole i{width:9px;height:9px;border-radius:50%;border:2px solid var(--muted)}
+.cert b{font:800 1.3rem/1 var(--display);text-transform:uppercase}
+.cert small{font:400 .68rem var(--mono);color:var(--muted)}
 
-/* Project */
-.project{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:16px}
-.project h3{font-size:1.5rem;font-weight:700}
-.diagram{overflow-x:auto;background:var(--chip);border-radius:8px;padding:14px}
+/* Ticket log */
+.log{display:flex;flex-direction:column;gap:56px;min-width:0}
+.log > section > h2{font:900 clamp(2.2rem,5vw,3.2rem)/1 var(--display);text-transform:uppercase;margin:0 0 18px;display:flex;align-items:baseline;gap:14px}
+.log > section > h2 small{font:400 .72rem var(--mono);color:var(--muted);text-transform:none}
+
+.ticket{background:var(--paper);border:2px solid var(--fg);position:relative}
+.ticket-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;padding:12px 18px;border-bottom:2px dashed var(--fg)}
+.pill{font:600 .66rem var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 8px;background:var(--green-2);color:var(--paper)}
+.pill.amber{background:var(--amber);color:#1a1205}
+.ticket-body{padding:20px 18px 22px;display:flex;flex-direction:column;gap:16px}
+.ticket h3{font:800 clamp(1.7rem,3.6vw,2.3rem)/1 var(--display);text-transform:uppercase;margin:0}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 20px;border-block:1px solid var(--line);padding-block:10px}
+.fields div{display:flex;flex-direction:column}
+.fields span{font:400 .64rem var(--mono);text-transform:uppercase;color:var(--muted)}
+.diagram{overflow-x:auto;border:1px solid var(--line);padding:12px;background:var(--bg)}
 .diagram svg{display:block;min-width:560px;width:100%;height:auto}
-.diagram text{font-family:var(--mono);font-size:12px;fill:var(--fg)}
-.diagram .sub{fill:var(--muted);font-size:10.5px}
-.diagram rect{fill:var(--surface);stroke:var(--accent);stroke-width:1.4}
-.diagram rect.fw{stroke:var(--amber);stroke-width:2}
-.diagram line,.diagram path{stroke:var(--accent);stroke-width:1.4;fill:none}
-ul.ticks{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px}
-ul.ticks li::marker{color:var(--amber)}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font:400 .78rem/1 var(--mono);padding:6px 9px;border-radius:4px;background:var(--chip);color:var(--fg)}
-.next{color:var(--muted);font-size:.98rem}
+.diagram text{font-family:var(--mono);font-size:11px;fill:var(--fg)}
+.diagram .sub{fill:var(--muted);font-size:9.5px}
+.diagram rect{fill:var(--paper);stroke:var(--fg);stroke-width:1.5}
+.diagram rect.fw{stroke:var(--amber);stroke-width:2.5}
+.diagram line,.diagram path{stroke:var(--green-2);stroke-width:2;fill:none;stroke-dasharray:5 4}
+.worklog{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.worklog li{display:grid;grid-template-columns:62px 1fr;gap:12px}
+.worklog li::before{content:attr(data-t);font:400 .68rem/2.2 var(--mono);color:var(--muted)}
+.ticket code{font-family:var(--mono);font-size:.8em;background:var(--bg);padding:1px 5px}
+.ticket .foot{font-family:var(--mono);font-size:.74rem}
 
-/* Experience */
-.job{display:flex;flex-direction:column;gap:8px}
-.job-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;align-items:baseline}
-.job h3{font-size:1.22rem;font-weight:700}
-.job .where{color:var(--muted)}
+/* Experience timeline */
+.job{display:grid;grid-template-columns:130px 1fr;gap:6px 24px;padding:20px 0;border-top:1px solid var(--fg)}
+.job:last-child{border-bottom:1px solid var(--fg)}
+.job .when{font:400 .7rem/1.6 var(--mono);color:var(--muted);padding-top:6px}
+.job h3{font:800 1.75rem/1.05 var(--display);text-transform:uppercase;margin:0}
+.job .org{color:var(--green-2);font-weight:700}
+.job ul{margin:8px 0 0;padding-left:1.1em}
+.job li::marker{color:var(--amber)}
+@media (max-width:560px){.job{grid-template-columns:1fr}}
 
-/* Skills */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px 28px}
-.skills h3{font:600 1rem var(--body);margin-bottom:6px}
-.skills p{color:var(--muted);font-size:.98rem}
+/* Label-maker skills */
+.tapes{display:flex;flex-direction:column;gap:18px}
+.tape-row{display:flex;flex-wrap:wrap;gap:10px 8px;align-items:center}
+.tape-row > b{font:800 .95rem var(--display);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);width:100%}
+.tape{font:600 .74rem/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;background:var(--tape);color:var(--tape-fg);padding:8px 12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 1px 2px rgba(0,0,0,.25)}
+.tape:nth-child(3n){transform:rotate(-1.2deg)} .tape:nth-child(4n+1){transform:rotate(.8deg)}
 
-footer .wrap{border-top:1px solid var(--line);padding-block:20px 32px;font:400 .8rem var(--mono);color:var(--muted)}
-@media (prefers-reduced-motion:no-preference){.btn,.copy{transition:border-color .15s,color .15s}}
+.edu{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;align-items:baseline;border:2px solid var(--fg);padding:18px}
+.edu h3{font:800 1.9rem/1 var(--display);text-transform:uppercase;margin:0}
+
+footer{margin-top:64px;border-top:3px solid var(--fg);padding-top:10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <span class="label">IT Support · Systems · Networking · Security</span>
-    <h1>Faysal Ali<span>.</span></h1>
-    <p class="role">IT support technician with Epic EHR experience, CCNA and Security+</p>
-    <p class="lede">I've supported clinicians on Epic in a hospital environment where downtime isn't an option. I'm finishing a Computer Science degree and building hands-on labs in Active Directory, networking and virtualization.</p>
-    <div class="meta"><span>Willmar, MN</span><span>Open to relocation</span></div>
-    <div class="links">
-      <a class="btn primary" href="https://www.linkedin.com/in/faysalali" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/faysalali1119" target="_blank" rel="noopener">GitHub</a>
-    </div>
-    <div class="email"><span id="email-text">faysalali1119@gmail.com</span><button class="copy" id="copy-email" type="button">Copy email</button></div>
+<div class="page">
+  <div class="top mono">
+    <span class="status"><i class="dot"></i>Available · open to relocation</span>
+    <span>IT Support / Systems / Networking / Security</span>
   </div>
-</header>
 
-<main>
-  <div class="wrap">
-  <section>
-    <span class="label">Certifications</span>
-    <div class="body">
-      <div class="certs">
-        <div class="cert"><span class="code">200-301</span><h3>Cisco CCNA</h3><span class="date">Earned Dec 2025</span></div>
-        <div class="cert"><span class="code">SY0-701</span><h3>CompTIA Security+</h3><span class="date">Earned Oct 2026</span></div>
+  <h1 class="name">Faysal<br>Ali<em>.</em></h1>
+
+  <div class="strap">
+    <p class="lead">I keep systems running and users working. <b>CCNA and Security+ certified</b>, with hands-on support experience on Epic in a live hospital.</p>
+    <p class="aside">Finishing a B.S. in Computer Science and building real infrastructure at home: firewalls, domains, group policy, and the tickets that come with them.</p>
+  </div>
+
+  <div class="grid">
+    <aside class="rail">
+      <div class="contact">
+        <h2>Reach me</h2>
+        <a class="big" href="https://www.linkedin.com/in/faysalali" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+        <a class="big" href="https://github.com/faysalali1119" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+        <div class="mail"><span id="email-text">faysalali1119@gmail.com</span><button class="copy" id="copy-email" type="button">Copy</button></div>
       </div>
-    </div>
-  </section>
 
-  <section>
-    <span class="label">Projects</span>
-    <div class="body">
-      <article class="project">
-        <span class="label">Home lab · Proxmox VE · Oct 2026</span>
-        <h3>Windows Active Directory Domain Lab</h3>
-        <p>Built a small corporate network on a mini PC running Proxmox. A pfSense firewall routes an isolated LAN, a Windows Server domain controller handles identity and DNS, and a domain-joined Windows 11 client is managed through Group Policy. I worked through realistic help desk tickets against it and documented each fix.</p>
-        <div class="diagram" role="img" aria-label="Lab topology: home network to pfSense firewall, to an internal LAN with a Windows Server domain controller and a Windows 11 client, all hosted on Proxmox">
-          <svg viewBox="0 0 620 150" xmlns="http://www.w3.org/2000/svg">
-            <rect x="6" y="50" width="96" height="44" rx="6"/>
-            <text x="54" y="70" text-anchor="middle">WAN</text>
-            <text x="54" y="84" text-anchor="middle" class="sub">home network</text>
-            <line x1="102" y1="72" x2="150" y2="72"/>
-            <rect class="fw" x="150" y="50" width="120" height="44" rx="6"/>
-            <text x="210" y="70" text-anchor="middle">pfSense</text>
-            <text x="210" y="84" text-anchor="middle" class="sub">firewall · DHCP</text>
-            <line x1="270" y1="72" x2="318" y2="72"/>
-            <path d="M318 26 V118"/>
-            <line x1="318" y1="36" x2="366" y2="36"/>
-            <line x1="318" y1="108" x2="366" y2="108"/>
-            <rect x="366" y="14" width="246" height="44" rx="6"/>
-            <text x="489" y="34" text-anchor="middle">Windows Server · DC</text>
-            <text x="489" y="48" text-anchor="middle" class="sub">AD DS · DNS · Group Policy</text>
-            <rect x="366" y="86" width="246" height="44" rx="6"/>
-            <text x="489" y="106" text-anchor="middle">Windows 11 client</text>
-            <text x="489" y="120" text-anchor="middle" class="sub">domain-joined</text>
-            <text x="324" y="144" class="sub">internal LAN</text>
-          </svg>
+      <div>
+        <h2>Spec sheet</h2>
+        <dl class="spec">
+          <div><dt>Base</dt><dd>Willmar, MN</dd></div>
+          <div><dt>Relocation</dt><dd>Open</dd></div>
+          <div><dt>Focus</dt><dd>Help desk · Sysadmin · Network</dd></div>
+          <div><dt>Degree</dt><dd>B.S. CS, in progress</dd></div>
+        </dl>
+      </div>
+
+      <div>
+        <h2>Certified</h2>
+        <div class="certs">
+          <div class="cert"><span class="hole"><i></i></span><b>Cisco CCNA</b><small>200-301 · Dec 2025</small></div>
+          <div class="cert"><span class="hole"><i></i></span><b>CompTIA Security+</b><small>SY0-701 · Oct 2026</small></div>
         </div>
-        <ul class="ticks">
-          <li>Created OUs, users and security groups, and applied GPOs for password policy, drive mapping and desktop restrictions</li>
-          <li>Joined a Windows 11 client to the domain and verified policy with <code>gpresult</code></li>
-          <li>Resolved help desk scenarios: account lockouts, password resets, DNS failures, and group permission issues</li>
-        </ul>
-        <div class="tags"><span class="tag">Proxmox VE</span><span class="tag">pfSense</span><span class="tag">Active Directory</span><span class="tag">Group Policy</span><span class="tag">DNS</span><span class="tag">Windows 11</span></div>
-        <p class="next">Write-up and screenshots: <a href="https://github.com/faysalali1119/homelab-active-directory" target="_blank" rel="noopener">homelab-active-directory on GitHub</a></p>
-      </article>
-    </div>
-  </section>
-
-  <section>
-    <span class="label">Experience</span>
-    <div class="body">
-      <div class="job">
-        <div class="job-head"><h3>Epic TDR Technician (Contract)</h3><span class="label">Avera Health</span></div>
-        <p class="where">Through Optimum Healthcare IT</p>
-        <ul class="ticks">
-          <li>Supported Epic EHR users in a high-uptime, clinical environment</li>
-          <li>Provided in-person end-user support, hardware swaps, and PC imaging and configuration</li>
-          <li>Troubleshot Microsoft 365 and Outlook issues; tracked work in Excel and SharePoint</li>
-        </ul>
       </div>
-      <div class="job">
-        <div class="job-head"><h3>Online Grocery Associate</h3><span class="label">Walmart</span></div>
-        <ul class="ticks">
-          <li>Trained new associates and resolved customer issues directly</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    </aside>
 
-  <section>
-    <span class="label">Skills</span>
-    <div class="body skills">
-      <div><h3>Support</h3><p>End-user support, PC imaging and deployment, hardware troubleshooting, Microsoft 365, Outlook</p></div>
-      <div><h3>Systems</h3><p>Active Directory, Group Policy, Windows Server, Windows 11, Proxmox virtualization</p></div>
-      <div><h3>Networking</h3><p>TCP/IP, subnetting, VLANs, routing and switching, DNS, DHCP, pfSense</p></div>
-      <div><h3>Security</h3><p>Access control, least privilege, security fundamentals (Security+), firewall configuration</p></div>
-      <div><h3>Healthcare IT</h3><p>Epic EHR environments, clinical downtime awareness, mission-critical support</p></div>
-    </div>
-  </section>
+    <main class="log">
+      <section>
+        <h2>Lab work <small>tickets I opened on myself</small></h2>
+        <article class="ticket">
+          <div class="ticket-head mono"><span>LAB-001 · Priority: high</span><span class="pill">Resolved</span></div>
+          <div class="ticket-body">
+            <h3>Stand up a Windows domain from scratch</h3>
+            <div class="fields">
+              <div><span>Host</span>Proxmox VE mini PC</div>
+              <div><span>Opened</span>Oct 2026</div>
+              <div><span>Scope</span>Firewall, AD, GPO, client</div>
+            </div>
+            <p>A small corporate network built on one mini PC. pfSense routes an isolated LAN, a Windows Server domain controller runs identity and DNS, and a domain-joined Windows 11 client takes its settings from Group Policy. Then I broke things on purpose and worked them like real help desk tickets.</p>
+            <div class="diagram" role="img" aria-label="Lab topology: home network to pfSense firewall, to an internal LAN with a Windows Server domain controller and a Windows 11 client">
+              <svg viewBox="0 0 620 150" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="50" width="96" height="44"/>
+                <text x="54" y="70" text-anchor="middle">WAN</text>
+                <text x="54" y="84" text-anchor="middle" class="sub">home network</text>
+                <line x1="102" y1="72" x2="150" y2="72"/>
+                <rect class="fw" x="150" y="50" width="120" height="44"/>
+                <text x="210" y="70" text-anchor="middle">pfSense</text>
+                <text x="210" y="84" text-anchor="middle" class="sub">firewall · DHCP</text>
+                <line x1="270" y1="72" x2="318" y2="72"/>
+                <path d="M318 36 V108"/>
+                <line x1="318" y1="36" x2="366" y2="36"/>
+                <line x1="318" y1="108" x2="366" y2="108"/>
+                <rect x="366" y="14" width="246" height="44"/>
+                <text x="489" y="34" text-anchor="middle">Windows Server · DC</text>
+                <text x="489" y="48" text-anchor="middle" class="sub">AD DS · DNS · Group Policy</text>
+                <rect x="366" y="86" width="246" height="44"/>
+                <text x="489" y="106" text-anchor="middle">Windows 11 client</text>
+                <text x="489" y="120" text-anchor="middle" class="sub">domain-joined</text>
+                <text x="326" y="144" class="sub">internal LAN</text>
+              </svg>
+            </div>
+            <ul class="worklog">
+              <li data-t="Step 1">Deployed pfSense and segmented an internal LAN with its own DHCP</li>
+              <li data-t="Step 2">Promoted Windows Server to a domain controller; built OUs, users and security groups</li>
+              <li data-t="Step 3">Applied GPOs for password policy, drive mapping and desktop restrictions; verified with <code>gpresult</code></li>
+              <li data-t="Step 4">Worked help desk scenarios: lockouts, password resets, DNS failures, permission issues</li>
+            </ul>
+            <p class="foot">Full write-up → <a href="https://github.com/faysalali1119/homelab-active-directory" target="_blank" rel="noopener">github.com/faysalali1119/homelab-active-directory</a></p>
+          </div>
+        </article>
+      </section>
 
-  <section>
-    <span class="label">Education</span>
-    <div class="body">
-      <div class="job">
-        <div class="job-head"><h3>B.S. Computer Science</h3><span class="label">In progress</span></div>
-        <p class="where">University of the People · A.S. in Computer Science conferred Nov 2026</p>
-      </div>
-    </div>
-  </section>
+      <section>
+        <h2>Experience</h2>
+        <div class="job">
+          <span class="when">Contract<br>via Optimum Healthcare IT</span>
+          <div>
+            <h3>Epic TDR Technician</h3>
+            <span class="org">Avera Health</span>
+            <ul>
+              <li>Supported clinicians on Epic EHR where downtime directly affects patient care</li>
+              <li>Delivered in-person end-user support, hardware swaps, and PC imaging and configuration</li>
+              <li>Troubleshot Microsoft 365 and Outlook; tracked issues in Excel and SharePoint</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <span class="when">Retail</span>
+          <div>
+            <h3>Online Grocery Associate</h3>
+            <span class="org">Walmart</span>
+            <ul><li>Trained new associates and resolved customer issues on the spot</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Toolkit</h2>
+        <div class="tapes">
+          <div class="tape-row"><b>Support</b><span class="tape">End-user support</span><span class="tape">PC imaging</span><span class="tape">Hardware swaps</span><span class="tape">Microsoft 365</span><span class="tape">Outlook</span><span class="tape">Epic EHR</span></div>
+          <div class="tape-row"><b>Systems</b><span class="tape">Active Directory</span><span class="tape">Group Policy</span><span class="tape">Windows Server</span><span class="tape">Windows 11</span><span class="tape">Proxmox VE</span></div>
+          <div class="tape-row"><b>Network + security</b><span class="tape">TCP/IP</span><span class="tape">Subnetting</span><span class="tape">VLANs</span><span class="tape">Routing &amp; switching</span><span class="tape">DNS / DHCP</span><span class="tape">pfSense</span><span class="tape">Least privilege</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="edu">
+          <h3>B.S. Computer Science</h3>
+          <span class="mono">University of the People · A.S. conferred Nov 2026</span>
+        </div>
+      </section>
+    </main>
   </div>
-</main>
 
-<footer><div class="wrap">Faysal Ali · faysalali1119@gmail.com · Updated October 2026</div></footer>
+  <footer class="mono"><span>Faysal Ali</span><span>Last updated Oct 2026</span></footer>
+</div>
 
 <script>
 (function(){
   var btn=document.getElementById('copy-email'), txt=document.getElementById('email-text');
   btn.addEventListener('click',function(){
-    var done=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy email'},1600)};
-    var fallback=function(){var r=document.createRange();r.selectNodeContents(txt);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected, press Ctrl+C'};
+    var done=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},1600)};
+    var fallback=function(){var r=document.createRange();r.selectNodeContents(txt);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Ctrl+C'};
     try{navigator.clipboard.writeText(txt.textContent).then(done,fallback)}catch(e){fallback()}
   });
 })();
